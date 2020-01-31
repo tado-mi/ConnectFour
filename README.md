@@ -1,2 +1,0 @@
-# ConnectFour
-~ comming soon
