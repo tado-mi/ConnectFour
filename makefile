@@ -23,13 +23,7 @@ default: classes
 
 classes: $(CLASSES:.java=.class)
 
-part1:
-	$(J) main 1
-
-part2:
-	$(J) main 2
-
-play:
+go:
 	$(J) main
 
 clean:

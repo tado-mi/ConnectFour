@@ -6,41 +6,35 @@ public class main {
 
 	public static void setUp(Scanner scanner) {
 
-		System.out.println("we offer: ");
-		System.out.println("\t1. 3x3x3 connect3;\tpart 1 of the project");
-		System.out.println("\t2. 3x5x3 connect3;\tcourtesy of a well implemented code");
-		System.out.println("\t3. 6x7x4 connect4;\tpart 2 of the project");
+		int row = 6, col = 7, limit = 4;
 
-		System.out.print("choose the game [1 - 3]: ");
-		int choice = scanner.nextInt();
-		System.out.println();
+		boolean temp;
+		System.out.println("would you like customise the number of rows and columns of the game? [ y / n] ");
+		temp = scanner.next().equals("y");
 
-		int row = -1, col = -1, limit = -1;
+		if (temp) {
 
-		if (choice == 1) {
+			System.out.print("row: ");
+			row = scanner.nextInt();
+			System.out.print("column: ");
+			col = scanner.nextInt();
 
-			col = 3;
-			row = 3;
-			limit = 3;
+		}
 
-		} else if (choice == 2) {
+		System.out.println("would you like customise the number of disks required? [ y / n] ");
+		temp = scanner.next().equals("y");
 
-			col = 5;
-			row = 3;
-			limit = 3;
+		if (temp) {
 
-		} else {
-
-			col = 7;
-			row = 6;
-			limit = 4;
+			System.out.print("limit: ");
+			limit = scanner.nextInt();
 
 		}
 
 		// ConnectFour
 		connectFour = new ConnectFour(row, col, limit);
 
-		System.out.println("welcome to a connect " + limit + " game!");
+		System.out.println("Welcome to a connect " + limit + " game! (again)");
 
 		System.out.println("we offer agents that use: ");
 		System.out.println("\t1. randomness;");
@@ -48,22 +42,11 @@ public class main {
 		System.out.println("\t3. h-minimax;");
 
 		System.out.print("choose the agents [1 - 3]: ");
-		int agentChoice = scanner.nextInt();
+		int agentChoice = scanner.nextInt() - 1;
 		System.out.println();
 
-		if (agentChoice == 1) {
-
-			connectFour.setAgent(connectFour.ai.random);
-
-		} else if (agentChoice == 2) {
-
-			connectFour.setAgent(connectFour.ai.minimax);
-
-		} else if (agentChoice == 3) {
-
-			connectFour.setAgent(connectFour.ai.hminimax);
-
-		}
+		int[] agents = { connectFour.ai.random, connectFour.ai.minimax, connectFour.ai.hminimax }
+		connectFour.setAgent(agents[agentChoice]);
 
 		connectFour.go(scanner);
 
@@ -71,32 +54,10 @@ public class main {
 
 	public static void main(String[] args) {
 
-		System.out.println("welcome to the Project 1!" + args.length);
+		System.out.println("Welcome to the Connect Four game with an intelligenta agent!");
 
 		Scanner scanner = new Scanner(System.in);
 		boolean s = true;
-
-		if (args.length != 0) {
-
-			if (args[0].equals("1")) {
-
-				connectFour = new ConnectFour(3, 3, 3);
-				connectFour.setAgent(connectFour.ai.minimax);
-				connectFour.go(scanner);
-
-			}
-
-			if (args[0].equals("2")) {
-
-				connectFour = new ConnectFour(6, 7, 4);
-				connectFour.setAgent(connectFour.ai.hminimax);
-				connectFour.go(scanner);
-
-			}
-
-			return;
-
-		}
 
 		while (true) {
 
@@ -109,7 +70,7 @@ public class main {
 			if (quit.equals("y")) break;
 
 			System.out.print("would you like to play a diffent game / choose another agent? [ y / n] ");
-			s = (scanner.next().equals("y"));
+			s = scanner.next().equals("y");
 			System.out.println();
 
 		}
