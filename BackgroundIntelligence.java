@@ -64,7 +64,7 @@ public class BackgroundIntelligence {
 		long start = System.nanoTime();
 
 		if (agent == random) {
-
+			
 			random();
 
 		} else if (agent == minimax) {
@@ -118,171 +118,171 @@ public class BackgroundIntelligence {
 
 	public int getScore() {
 
-        int score = 0;
+		int score = 0;
 
-        for (int i = board.row - 1; i >= 0; i = i - 1)
+		for (int i = board.row - 1; i >= 0; i = i - 1)
 
-        	for (int j = 0; j < board.col; j = j + 1) {
+		for (int j = 0; j < board.col; j = j + 1) {
 
-        	int mScore = 1, emptCells  = 0;
+			int mScore = 1, emptCells  = 0;
 
-            if (board.data[i][j] == 0 || board.data[i][j] == u) {
+			if (board.data[i][j] == 0 || board.data[i][j] == u) {
 
-            	continue;
+				continue;
 
-            }
+			}
 
-            int coeff = (j < 4) ? 1 : -1;
-            int remChoices = 0;
+			int coeff = (j < 4) ? 1 : -1;
+			int remChoices = 0;
 
-            if (j != 4) {
+			if (j != 4) {
 
-                for (int k = 1; k < 4; k = k + 1)  {
+				for (int k = 1; k < 4; k = k + 1)  {
 
-                	int focus = board.data[i][j + coeff * k];
+					int focus = board.data[i][j + coeff * k];
 
-                	if (focus == m) {
+					if (focus == m) {
 
-                			mScore = mScore + 1;
+						mScore = mScore + 1;
 
-                	} else if (focus == u) {
+					} else if (focus == u) {
 
-               			mScore = 0;
-               			emptCells = 0;
-               			// break overall loop
-               			break;
+						mScore = 0;
+						emptCells = 0;
+						// break overall loop
+						break;
 
-               		} else {
+					} else {
 
-                		emptCells = emptCells + 1;
+						emptCells = emptCells + 1;
 
-               		}
+					}
 
-               	}
+				}
 
-                if (emptCells > 0) {
+				if (emptCells > 0) {
 
-                    for (int p = 1; p < 4; p = p + 1) {
+					for (int p = 1; p < 4; p = p + 1) {
 
-                        for (int q = i; q < board.row; q = q + 1) {
+						for (int q = i; q < board.row; q = q + 1) {
 
-                        	if (board.data[q][j + coeff * p] == 0) {
+							if (board.data[q][j + coeff * p] == 0) {
 
-                        		remChoices = remChoices + 1;
+								remChoices = remChoices + 1;
 
-                        	} else {
+							} else {
 
-                        		break;
+								break;
 
-                        	}
+							}
 
-                        }
+						}
 
-                    }
+					}
 
-                }
+				}
 
-            }
+			}
 
-            if (i > 4) {
+			if (i > 4) {
 
-            	int count = 0;
+				int count = 0;
 
-            	for (int k = 1; k < 4; k = k + 1) {
+				for (int k = 1; k < 4; k = k + 1) {
 
-            		count = k;
-            		int focus = board.data[i - k][j];
+					count = k;
+					int focus = board.data[i - k][j];
 
-            		if (focus == m) {
+					if (focus == m) {
 
-            			mScore = mScore + 1;
+						mScore = mScore + 1;
 
-            		} else if (focus == u) {
+					} else if (focus == u) {
 
-            			mScore = 0;
-            			// break overall loop
-            			break;
+						mScore = 0;
+						// break overall loop
+						break;
 
-            		}
+					}
 
 
-                }
+				}
 
-                remChoices = 0;
+				remChoices = 0;
 
-                if (mScore > 0){
+				if (mScore > 0){
 
-                    for (int p = i - count +1; p < i; p = p + 1) {
+					for (int p = i - count +1; p < i; p = p + 1) {
 
-                    	if (board.data[p][j] == 0) remChoices = remChoices + 1;
-                        else break;
+						if (board.data[p][j] == 0) remChoices = remChoices + 1;
+						else break;
 
-                    }
+					}
 
-                }
+				}
 
-            }
+			}
 
-            coeff = 1;
-            if (i > 2 && j > 2) coeff = -1;
+			coeff = 1;
+			if (i > 2 && j > 2) coeff = -1;
 
-            if (j < 2 && i > 2) {
+			if (j < 2 && i > 2) {
 
-            	for (int k = 1; k < 4; k = k + 1) {
+				for (int k = 1; k < 4; k = k + 1) {
 
-            		int focus = board.data[i - k][j + coeff * k];
+					int focus = board.data[i - k][j + coeff * k];
 
-            		if (focus == m) {
+					if (focus == m) {
 
-            			mScore = mScore + 1;
+						mScore = mScore + 1;
 
-            		} else if (focus == u) {
+					} else if (focus == u) {
 
-            			mScore = 0;
-                		emptCells = 0;
-                		break;
+						mScore = 0;
+						emptCells = 0;
+						break;
 
-            		} else {
+					} else {
 
-            			emptCells = emptCells + 1;
+						emptCells = emptCells + 1;
 
-            		}
+					}
 
-                }
+				}
 
-                if (emptCells > 0) {
+				if (emptCells > 0) {
 
-                    for (int p = 1; p < 4; p = p + 1) {
+					for (int p = 1; p < 4; p = p + 1) {
 
-                        for (int q = i - p; q < board.row; q = q + 1) {
+						for (int q = i - p; q < board.row; q = q + 1) {
 
-                        	if (board.data[q][j + coeff * p] == 0) {
+							if (board.data[q][j + coeff * p] == 0) {
 
-                        		remChoices = remChoices + 1;
+								remChoices = remChoices + 1;
 
-                        	} else {
+							} else {
 
-                        		break;
+								break;
 
-                        	}
+							}
 
-                        }
+						}
 
-                    }
+					}
 
-                }
+				}
 
-            }
+			}
 
-            if (remChoices != 0) {
+			if (remChoices != 0) {
 
-            	score = score + calcScore(mScore, remChoices);
+				score = score + calcScore(mScore, remChoices);
 
-            }
+			}
 
-        }
+		}
 
-        return score;
+		return score;
 
 	}
 
@@ -300,7 +300,7 @@ public class BackgroundIntelligence {
 		else if (g == u) return min / 2;
 
 		int maxScore = min,
-				minScore = max;
+		minScore = max;
 
 		for (int j = 0; j < board.row; j = j + 1) {
 
@@ -371,7 +371,7 @@ public class BackgroundIntelligence {
 		if (depth == maxDepth) return getScore();
 
 		int maxScore = min,
-			minScore = max;
+		minScore = max;
 
 		for (int j = 0; j < board.row; j = j + 1) {
 

@@ -2,68 +2,68 @@ import java.util.Scanner;
 
 public class ConnectFour {
 
-    Board board;
-    BackgroundIntelligence ai;
+  Board board;
+  BackgroundIntelligence ai;
 
-    // constructor
-    public ConnectFour(int row, int col, int limit) {
+  // constructor
+  public ConnectFour(int row, int col, int limit) {
 
-        board = new Board(row, col, limit);
-        ai = new BackgroundIntelligence(board);
+    board = new Board(row, col, limit);
+    ai = new BackgroundIntelligence(board);
 
-    }
+  }
 
-    public void setAgent(int agent) {
+  public void setAgent(int agent) {
 
-        ai.setAgent(agent);
+    ai.setAgent(agent);
 
-    }
+  }
 
-    public boolean gameOver() {
+  public boolean gameOver() {
 
-        return board.draw() || board.culminate();
+    return board.draw() || board.culminate();
 
-    }
+  }
 
-    public void printBoard() {
+  public void printBoard() {
+    
+    System.out.println(board.toString());
 
-      System.out.println(board.toString());
+  }
 
-    }
+  public void handleGameOver() {
 
-    public void handleGameOver() {
+    System.out.println("So, it came to my attention that the game is over.");
+    System.out.println("\tI can tell that, because I am intelligent, you see.");
 
-      System.out.println("So, it came to my attention that the game is over.");
-      System.out.println("\tI can tell that, because I am intelligent, you see.");
+    System.out.println("this is where we are at: ");
+    printBoard();
+    System.out.println();
 
-      System.out.println("this is where we are at: ");
-      printBoard();
-      System.out.println();
+    int w = board.getWinner();
 
-      int w = board.getWinner();
+    if (w == ai.draw) System.out.println("I see that I have met my equal here!");
+    if (w == ai.u) System.out.println("You won! I stand humbled, master!");
+    if (w == ai.m) System.out.println("I won! Which is not surprising at all, since "
+    + "I have a metallic brain and had great minds work on me!");
 
-      if (w == ai.draw) System.out.println("I see that I have met my equal here!");
-      if (w == ai.u) System.out.println("You won! I stand humbled, master!");
-      if (w == ai.m) System.out.println("I won! Which is not surprising at all, since "
-      + "I have a metallic brain and had great minds work on me!");
+    if (ai.agent == ai.random) {
 
-      if (ai.agent == ai.random) {
-
-          System.out.println("\twasn't too demanding to play against randomness, was it?");
-
-      }
+      System.out.println("\twasn't too demanding to play against randomness, was it?");
 
     }
 
-    // driver method
-    public void go(Scanner scanner) {
+  }
 
-      while (true) {
+  // driver method
+  public void go(Scanner scanner) {
+
+    while (true) {
 
       if (gameOver()) {
 
-          handleGameOver();
-          return;
+        handleGameOver();
+        return;
 
       }
 
@@ -75,17 +75,17 @@ public class ConnectFour {
 
       while (!isLegal) { // force the user to make a valid choice
 
-          System.out.print("choose column: ");
-          userChoice = scanner.nextInt();
+        System.out.print("choose column: ");
+        userChoice = scanner.nextInt();
 
-          if (!board.isLegal(userChoice)) {
+        if (!board.isLegal(userChoice)) {
 
-              System.out.println("column " + userChoice + " is full / off bounds.");
-              continue;
+          System.out.println("column " + userChoice + " is full / off bounds.");
+          continue;
 
-          } // else find the row
+        } // else find the row
 
-          isLegal = true;
+        isLegal = true;
 
       }
 
@@ -102,8 +102,8 @@ public class ConnectFour {
       int aiChoice = ai.getChoice();
       if (aiChoice == -1) {
 
-          // should never happen
-          return;
+        // should never happen
+        return;
 
       }
 
@@ -115,6 +115,6 @@ public class ConnectFour {
 
     }
 
-    }
+  }
 
 }

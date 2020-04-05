@@ -19,21 +19,21 @@ public class main {
 
 		if (choice == 1) {
 
-				col = 3;
-				row = 3;
-				limit = 3;
+			col = 3;
+			row = 3;
+			limit = 3;
 
 		} else if (choice == 2) {
 
-				col = 5;
-				row = 3;
-				limit = 3;
+			col = 5;
+			row = 3;
+			limit = 3;
 
 		} else {
 
-				col = 7;
-				row = 6;
-				limit = 4;
+			col = 7;
+			row = 6;
+			limit = 4;
 
 		}
 
@@ -53,15 +53,15 @@ public class main {
 
 		if (agentChoice == 1) {
 
-				connectFour.setAgent(connectFour.ai.random);
+			connectFour.setAgent(connectFour.ai.random);
 
 		} else if (agentChoice == 2) {
 
-				connectFour.setAgent(connectFour.ai.minimax);
+			connectFour.setAgent(connectFour.ai.minimax);
 
 		} else if (agentChoice == 3) {
 
-				connectFour.setAgent(connectFour.ai.hminimax);
+			connectFour.setAgent(connectFour.ai.hminimax);
 
 		}
 
@@ -80,9 +80,9 @@ public class main {
 
 			if (args[0].equals("1")) {
 
-					connectFour = new ConnectFour(3, 3, 3);
-					connectFour.setAgent(connectFour.ai.minimax);
-					connectFour.go(scanner);
+				connectFour = new ConnectFour(3, 3, 3);
+				connectFour.setAgent(connectFour.ai.minimax);
+				connectFour.go(scanner);
 
 			}
 
@@ -100,22 +100,22 @@ public class main {
 
 		while (true) {
 
-				if (s) setUp(scanner);
+			if (s) setUp(scanner);
 
-				System.out.print("would you like to quit? [ y / n] ");
-				String quit = scanner.next();
-				System.out.println();
+			System.out.print("would you like to quit? [ y / n] ");
+			String quit = scanner.next();
+			System.out.println();
 
-				if (quit.equals("y")) break;
+			if (quit.equals("y")) break;
 
-				System.out.print("would you like to play a diffent game / choose another agent? [ y / n] ");
-				s = (scanner.next().equals("y"));
-				System.out.println();
+			System.out.print("would you like to play a diffent game / choose another agent? [ y / n] ");
+			s = (scanner.next().equals("y"));
+			System.out.println();
 
-			}
+		}
 
-			System.out.println("pleasure having you! bye :) ");
+		System.out.println("pleasure having you! bye :) ");
 
-    }
+	}
 
 }
